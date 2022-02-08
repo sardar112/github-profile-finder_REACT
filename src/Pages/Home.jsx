@@ -1,10 +1,12 @@
-import React from 'react';
+import { useEffect } from 'react';
+
+import Users from '../Components/Users/Users';
 
 function Home() {
   return (
-    <div>
-      <h1 className='text-6xl'> Welcome to React Github Finder Project</h1>
-    </div>
+    <>
+      <Users />
+    </>
   );
 }
 
