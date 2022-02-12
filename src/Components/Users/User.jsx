@@ -9,14 +9,16 @@ function User({ user: { login, avatar_url } }) {
             <img src={avatar_url} alt='Profile' />
           </div>
         </div>
+        <div>
+          <h2 className='card-title'>{login}</h2>
+          <Link
+            className='text-base-content text-opacity-40'
+            to={`/users/${login}`}
+          >
+            Visit Profile
+          </Link>
+        </div>
       </div>
-      <h2 className='card-title'>{login}</h2>
-      <Link
-        className='text-base-content text-opacity-40'
-        to={`/users/${login}`}
-      >
-        Visit Profile
-      </Link>
     </div>
   );
 }
