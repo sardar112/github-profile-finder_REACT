@@ -17,8 +17,8 @@ function About() {
       <p className='text-lg text-gray-400'>
         Designation: <b className='text-lg text-500'>Software Engineer</b>
         <p>
-          I've 1.5 years of experience in developing both frontend and backend
-          applications. I'm MEAN/MERN Stack developer
+          I'm MEAN/MERN Stack developer. I've 1.5 years of experience in
+          developing both frontend and backend applications.
         </p>
       </p>
     </>

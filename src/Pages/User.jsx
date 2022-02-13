@@ -1,20 +1,36 @@
 import { useEffect, useContext } from 'react';
+
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
 import { useParams, Link } from 'react-router-dom';
 
 import Spinner from '../Components/Shared/Spinner';
 import GithubContext from '../Context/Github/GithubContext';
 import Repos from '../Components/Repos/Repos';
+import { getUserAndRepos } from '../Context/Github/GithubActions';
 
 function User() {
-  const { getUser, user, loading, getUserRepos, repos } =
-    useContext(GithubContext);
+  // const { getUser, user, loading, getUserRepos, repos } =
+  const { user, loading, repos, dispatch } = useContext(GithubContext);
   const params = useParams();
 
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
-  }, []);
+    //   // getUser(params.login);
+    //   // getUserRepos(params.login);
+    dispatch({ type: 'SET_LOADING' });
+    const getUserData = async () => {
+      const userData = await getUserAndRepos(params.login);
+      dispatch({ type: 'GET_USER_AND_REPOS', payload: userData });
+    };
+    getUserData();
+
+    //   // const getUserData = async () => {
+    //   //   const userData = await getUser(params.login);
+    //   //   dispatch({ type: 'GET_USER', payload: userData });
+
+    //   //   const userRepos = await getUserRepos(params.login);
+    //   //   dispatch({ type: 'GET_REPOS', payload: userRepos });
+    //   // };
+  }, [dispatch, params.login]);
 
   const {
     name,

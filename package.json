@@ -8,6 +8,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.2",
+    "axios": "^0.26.0",
     "daisyui": "^1.25.4",
     "postcss": "^8.4.6",
     "react": "^17.0.2",
