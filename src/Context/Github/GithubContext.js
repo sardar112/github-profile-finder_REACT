@@ -11,6 +11,8 @@ export const GithubProvider = ({ children }) => {
   // const [loading, setLoading] = useState(false); // using reducer we no longer need use state
   const initialState = {
     users: [],
+    user: {},
+    repos: [],
     loading: false,
   };
   const [state, dispatch] = useReducer(GithubReducer, initialState);
@@ -55,6 +57,44 @@ export const GithubProvider = ({ children }) => {
       payload: items,
     });
   };
+
+  //Get User
+  const getUser = async (login) => {
+    setLoading();
+
+    const res = await fetch(`${GITHUB_URL}/users/${login}`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
+    if (res.status === 400) {
+      window.location('/notfound');
+    } else {
+      const userData = await res.json();
+      dispatch({
+        type: 'GET_USER',
+        payload: userData,
+      });
+    }
+  };
+
+  // get Repos
+  const getUserRepos = async (login) => {
+    setLoading();
+
+    const res = await (
+      await fetch(`${GITHUB_URL}/users/${login}/repos`, {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      })
+    ).json();
+    dispatch({
+      type: 'GET_REPOS',
+      payload: res,
+    });
+  };
+
   // set Loading
   const setLoading = () => dispatch({ type: 'SET_LOADING' });
 
@@ -66,9 +106,12 @@ export const GithubProvider = ({ children }) => {
       value={{
         users: state.users,
         loading: state.loading,
+        user: state.user,
+        repos: state.repos,
         searchUsers,
-        // featchUsers
+        getUser,
         clearUsers,
+        getUserRepos,
       }}
     >
       {children}
