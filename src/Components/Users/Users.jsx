@@ -4,7 +4,7 @@ import User from '../Users/User';
 import GithubContext from '../../Context/Github/GithubContext';
 
 function Users() {
-  const { users, loading, fetchUsers } = useContext(GithubContext);
+  const { users, loading } = useContext(GithubContext);
 
   // useEffect(() => {
   //   fetchUsers();

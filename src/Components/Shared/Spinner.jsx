@@ -7,7 +7,7 @@ function Spinner() {
         width={180}
         className='text-center mx-auto'
         src={spinner}
-        alt='Loading...'
+        alt='Loading....'
       />
     </div>
   );
